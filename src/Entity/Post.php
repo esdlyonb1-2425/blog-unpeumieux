@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Repository\CommentRepository;
 use App\Repository\PostRepository;
 use Attributes\TargetRepository;
 use Core\Attributes\Table;
@@ -42,5 +43,10 @@ class Post
         $this->content = $content;
     }
 
+    public function getComments():array
+    {
+        $commentRepo = new CommentRepository();
+        return $commentRepo->findAllByPost($this);
+    }
 
 }

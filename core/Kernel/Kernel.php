@@ -3,12 +3,14 @@
 namespace Core\Kernel;
 
 use Core\Environment\DotEnv;
+use Core\Session\Session;
 
 class Kernel
 {
 
     public static function run()
     {
+        Session::start();
 
         $dotEnv = new Dotenv();
 

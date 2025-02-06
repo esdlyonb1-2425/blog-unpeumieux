@@ -1,3 +1,8 @@
+<?php
+
+use Core\Session\Session;
+
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -29,20 +34,20 @@
                     <a class="nav-link" href="?type=post&action=create">New Post</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="signIn.php">Sign In</a>
+                    <a class="nav-link" href="?type=security&action=login">Sign In</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="signUp.php">Sign Up</a>
+                    <a class="nav-link" href="?type=security&action=register">Sign Up</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="signOut.php">Sign Out</a>
+                    <a class="nav-link" href="?type=security&action=logOut">Sign Out</a>
                 </li>
                 <span><strong><?php
-                        if(isset($_SESSION["username"])){
-                            echo $_SESSION["username"];
-                        }
+                        if(Session::get("user")) :  ?>
 
-                        ?>
+                        <?= Session::get("user")["authenticator"] ?>
+
+                        <?php endif; ?>
                     </strong></span>
 
             </ul>

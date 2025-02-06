@@ -1,21 +1,34 @@
 <?php
 
-namespace Repository;
+namespace App\Repository;
 
-use Database\Database;
+use App\Entity\User;
+use Attributes\TargetEntity;
+use Core\Repository\Repository;
+
+#[TargetEntity(entityName: User::class)]
 class UserRepository extends Repository
 {
 
-
-    public function findUserByUsername(string $username) : array| bool
+    public function findByUsername(string $username): User | bool
     {
-        $query = $this->pdo->prepare("SELECT * FROM users WHERE username = :username");
-        $query->execute([
-            "username"=> $username
-        ]);
-        $user = $query->fetch();
-        return $user;
+        $query = $this->pdo->prepare("SELECT * FROM $this->tableName WHERE `username` = :username");
+        $query->execute(['username' => $username]);
+        $query->setFetchMode(\PDO::FETCH_CLASS, User::class);
+        return $query->fetch();
+
     }
+
+    public function save(User $user): User | bool
+    {
+        $query = $this->pdo->prepare("INSERT INTO $this->tableName (username, password) VALUES (:username, :password)");
+        $query->execute([
+            'username' => $user->getUsername(),
+            'password' => $user->getPassword(),
+        ]);
+        return $this->find($this->pdo->lastInsertId());
+    }
+
 
 
 

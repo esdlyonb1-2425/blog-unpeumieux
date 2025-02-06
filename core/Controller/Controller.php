@@ -2,9 +2,11 @@
 
 namespace Core\Controller;
 
+use App\Entity\User;
 use Attributes\DefaultEntity;
 use Attributes\TargetRepository;
 use Core\Response\Response;
+use Core\Session\Session;
 
 class Controller
 {
@@ -44,6 +46,16 @@ class Controller
 
         $attributes = $reflection->getAttributes(DefaultEntity::class);
         return $attributes[0]->getArguments()["entityName"];
+    }
+
+    public function getUser(): object | bool
+    {
+        if(Session::userLoggedIn())
+        {
+           return $this->getRepository(User::class)->find(Session::get("user")["id"]);
+        }
+        else
+            return false;
     }
 
 
