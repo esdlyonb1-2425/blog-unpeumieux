@@ -5,7 +5,7 @@ namespace Core\Controller;
 use App\Entity\User;
 use Attributes\DefaultEntity;
 use Attributes\TargetRepository;
-use Core\Response\Response;
+use Core\Http\Response;
 use Core\Session\Session;
 
 class Controller

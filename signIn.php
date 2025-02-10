@@ -10,7 +10,7 @@ require_once "src/Controller/ArticleController.php";
 require_once "src/Repository/ArticleRepository.php";
 require_once "core/Database/Database.php";
 require_once "core/View/View.php";
-require_once "core/Response/Response.php";
+require_once "core/Http/Response.php";
 
 $controller = new \Controller\UserController();
 $controller->signInAction();

@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use Attributes\DefaultEntity;
 use Core\Controller\Controller;
-use Core\Response\Response;
+use Core\Http\Response;
 
 #[DefaultEntity(entityName: User::class)]
 class SecurityController extends Controller

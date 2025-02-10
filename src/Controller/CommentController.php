@@ -6,7 +6,7 @@ use App\Entity\Comment;
 use App\Entity\Post;
 use Attributes\DefaultEntity;
 use Core\Controller\Controller;
-use Core\Response\Response;
+use Core\Http\Response;
 
 #[DefaultEntity(entityName: Comment::class)]
 class CommentController extends Controller

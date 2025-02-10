@@ -5,14 +5,16 @@ namespace App\Controller;
 use App\Entity\Comment;
 use App\Entity\Post;
 use Attributes\DefaultEntity;
+use Core\Attributes\Route;
 use Core\Controller\Controller;
-use Core\Response\Response;
+use Core\Http\Response;
 
 #[DefaultEntity(entityName: Post::class)]
 class PostController extends Controller
 {
 
 
+    #[Route(uri:"/posts", routeName:"theposts", methods:["GET", "POST"])]
     public function index(): Response
     {
 
@@ -23,6 +25,7 @@ class PostController extends Controller
         ]);
     }
 
+    #[Route(uri:"/posts/show", routeName:"thepost")]
 
     public function show(): Response
     {
