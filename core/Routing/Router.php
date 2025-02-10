@@ -2,6 +2,8 @@
 
 namespace Core\Routing;
 
+use App\Controller\HomeController;
+use Core\Environment\DotEnv;
 use Core\Http\Request;
 use Core\Kernel\Process;
 use Core\Loader\Reflection;
@@ -15,7 +17,17 @@ class Router
     public function __construct()
     {
         $this->resolveRoutesFromAttributes();
+        if(!$this->resolveRoute('/'))
+        {
+            $route = new Route();
+            $route->setController(HomeController::class);
+            $route->setMethod('index');
+            $route->setUri('/');
+            $route->setVerbs(['GET']);
+            $route->setRouteName('landing_default');
 
+            $this->addRoute($route);
+        }
 
     }
 
@@ -72,6 +84,24 @@ class Router
             $this->addRoute($route);
 
         }
+
+    }
+
+
+    public function getUriFromRouteName(string $routeName):string
+    {
+        $uri = null;
+        foreach ($this->routes as $route) {
+            if ($route->getRouteName() === $routeName) {
+                $uri = $route->getUri();
+            }
+        }
+        if(!$uri)
+        {
+            throw new \Exception("Route not found YOU DUMMY DEVELOPER!! ");
+        }
+
+        return $uri;
 
     }
 

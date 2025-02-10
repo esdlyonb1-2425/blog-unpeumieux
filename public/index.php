@@ -1,8 +1,8 @@
 <?php
-use Core\Kernel\Kernel;
+
+use Core\Controller\Kernel;
 
 require_once "../vendor/autoload.php";
 
 
 Kernel::run();
-var_dump($_SESSION);

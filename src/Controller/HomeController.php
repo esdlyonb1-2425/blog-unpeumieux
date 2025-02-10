@@ -8,13 +8,9 @@ class HomeController extends Controller
 {
 
 
-    public function coucou()
-    {
-        return $this->render('home/coucou', []);
-    }
 
-    public function accueil(   )
+    public function index()
     {
-       return $this->render('home/accueil', []);
+       return $this->render('home/documentation', []);
     }
 }

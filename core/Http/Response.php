@@ -2,6 +2,7 @@
 
 namespace Core\Http;
 
+use Core\Routing\Router;
 use Core\View\View;
 
 class Response
@@ -26,6 +27,38 @@ public function redirect( array $urlParams = null)
 
         return $this;
 
+    }
+
+    public function redirectToRoute(string $routename, array $params = null)
+    {
+        $router = new Router();
+
+        try{
+            $uri = $router->getUriFromRouteName($routename);
+
+        } catch (\Exception $e) {
+            throw $e;
+        }
+
+        if($params)
+        {
+            $uriParams = "?";
+            foreach($params as $paramName => $paramValue)
+            {
+                $uriParams .= $paramName . "=" . $paramValue . "&";
+
+            }
+            $uriParams = substr($uriParams, 0, -1);
+
+            $uri.=$uriParams;
+        }
+
+
+
+        header("Location: $uri");
+
+
+        return $this;
     }
 
 public function render(string $templateName, array $data)

@@ -16,45 +16,25 @@ use Core\Session\Session;
 
 <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="/">Php Framework</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarColor01">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link active" href="index.php">Home
+                    <a class="nav-link active" href="/">Home
                         <span class="visually-hidden">(current)</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="?type=article&action=addArticle">New Article</a>
+                    <a class="nav-link" href="#">example link</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="?type=post&action=create">New Post</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="?type=security&action=login">Sign In</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="?type=security&action=register">Sign Up</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="?type=security&action=logOut">Sign Out</a>
-                </li>
-                <span><strong><?php
-                        if(Session::get("user")) :  ?>
 
-                        <?= Session::get("user")["authenticator"] ?>
 
-                        <?php endif; ?>
-                    </strong></span>
 
             </ul>
-            <form class="d-flex">
-                <input class="form-control me-sm-2" type="search" placeholder="Search">
-                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-            </form>
+
         </div>
     </div>
 </nav>

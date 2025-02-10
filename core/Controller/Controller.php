@@ -5,6 +5,7 @@ namespace Core\Controller;
 use App\Entity\User;
 use Attributes\DefaultEntity;
 use Attributes\TargetRepository;
+use Core\Http\Request;
 use Core\Http\Response;
 use Core\Session\Session;
 
@@ -21,6 +22,12 @@ class Controller
     {
         return $this->response->redirect($params);
     }
+    public function redirectToRoute(string $routeName, array $params = null)
+    {
+        return $this->response->redirectToRoute($routeName, $params);
+    }
+
+
     public function render(string $templateName, array $data)
     {
         return $this->response->render($templateName, $data);
@@ -59,4 +66,8 @@ class Controller
     }
 
 
+    public function getRequest(): Request
+    {
+        return new Request();
+    }
 }
